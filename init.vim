@@ -16,6 +16,7 @@ Plug 'junegunn/seoul256.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'ekalinin/Dockerfile.vim'
 
 call plug#end()
 
