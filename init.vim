@@ -1,25 +1,82 @@
-" General settings
-syntax on
-set nu
+" General settings"{{{
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+let g:python_host_skip_check = 1
+let g:python3_host_skip_check = 1
+let g:EditorConfig_core_mode = 'external_command'
 
-let g:python_version = matchstr(system("python --version | cut -f2 -d' '"), '^[0-9]')
-if g:python_version =~ 3
-    let g:python2_host_prog = "/usr/bin/python2"
-else
-    let g:python3_host_prog = "/usr/bin/python3"
+if has('unix')
+  let g:python_version = matchstr(system("python --version | cut -f2 -d' '"), '^[0-9]')
+  call system("which pyenv")
+  if v:shell_error
+    if g:python_version =~ 3
+      let g:python2_host_prog = "/usr/bin/python2"
+    else
+      let g:python3_host_prog = "/usr/bin/python3"
+    endif
+  else
+    if g:python_version =~ 3
+      let g:python2_host_prog = expand("~/.pyenv/shims/python2")
+    else
+      let g:python3_host_prog = expand("~/.pyenv/shims/pyton3")
+    endif
+  endif
 endif
 
-" Install plugins
-call plug#begin('~/.config/nvim/plugged')
+if has('vim_starting')
+  " Required:
+  set runtimepath+=~/.config/nvim/bundle/neobundle.vim
+endif"}}}
 
-Plug 'junegunn/seoul256.vim'
-Plug 'airblade/vim-gitgutter'
-Plug 'tpope/vim-fugitive'
-Plug 'editorconfig/editorconfig-vim'
-Plug 'ekalinin/Dockerfile.vim'
+" package manager"{{{
+" Required:
+call neobundle#begin(expand('~/.config/nvim/bundle'))
 
-call plug#end()
+" Let NeoBundle manage NeoBundle
+" Required:
+NeoBundleFetch 'Shougo/neobundle.vim'
 
-" Keyboard shortcuts
+" Add or remove your Bundles here:
+NeoBundle 'Shougo/neosnippet.vim'
+NeoBundle 'Shougo/neosnippet-snippets'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'ctrlpvim/ctrlp.vim'
+NeoBundle 'airblade/vim-gitgutter'
+NeoBundle 'editorconfig/editorconfig-vim'
+NeoBundle 'ekalinin/Dockerfile.vim'
+NeoBundle 'morhetz/gruvbox'
+
+" Required:
+call neobundle#end()
+
+" Required:
+filetype plugin indent on
+
+" If there are uninstalled bundles found on startup,
+" this will conveniently prompt you to install them.
+NeoBundleCheck"}}}
+
+" Appearance"{{{
+colorscheme gruvbox
+syntax on
+set foldenable
+set nu
+set background=dark
+set colorcolumn=80,100
+set cursorline
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set expandtab"}}}
+
+" File settings"{{{
+autocmd FileType vim,txt setlocal foldmethod=marker"}}}
+
+" Keyboard shortcuts"{{{
+let mapleader="\<SPACE>"
 inoremap jj <esc>
-colorscheme seoul256
+
+noremap j gj
+noremap k gk
+
+vmap <Leader>y "+y
+vmap <Leader>d "+d"}}}
