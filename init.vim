@@ -45,6 +45,7 @@ NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'editorconfig/editorconfig-vim'
 NeoBundle 'ekalinin/Dockerfile.vim'
 NeoBundle 'morhetz/gruvbox'
+NeoBundle 'SirVer/ultisnips'
 
 " Required:
 call neobundle#end()
