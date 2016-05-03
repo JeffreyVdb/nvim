@@ -77,8 +77,11 @@ inoremap jj <esc>
 noremap j gj
 noremap k gk
 
+noremap <Leader>ec :r !
+noremap <Leader>cef gg"+yG
 vmap <Leader>y "+y
-vmap <Leader>d "+d"}}}
+vmap <Leader>d "+d
+"}}}
 
 " Plugin settings"{{{
 
