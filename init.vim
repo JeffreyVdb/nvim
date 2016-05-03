@@ -2,7 +2,6 @@
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 let g:python_host_skip_check = 1
 let g:python3_host_skip_check = 1
-let g:EditorConfig_core_mode = 'external_command'
 
 if has('unix')
   let g:python_version = matchstr(system("python --version | cut -f2 -d' '"), '^[0-9]')
@@ -21,18 +20,20 @@ if has('unix')
     endif
   endif
 endif
-
-if has('vim_starting')
-  " Required:
-  set runtimepath+=~/.config/nvim/bundle/neobundle.vim
-endif"}}}
+"}}}
 
 " package manager"{{{
-" Required:
+if has('vim_starting')
+    set runtimepath+=~/.config/nvim/bundle/neobundle.vim
+endif
+
+if &compatible
+    set nocompatible               " Be iMproved
+endif
+
 call neobundle#begin(expand('~/.config/nvim/bundle'))
 
 " Let NeoBundle manage NeoBundle
-" Required:
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 " Add or remove your Bundles here:
@@ -63,7 +64,8 @@ set cursorline
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
-set expandtab"}}}
+set expandtab
+"}}}
 
 " File settings"{{{
 autocmd FileType vim,txt setlocal foldmethod=marker"}}}
@@ -77,3 +79,9 @@ noremap k gk
 
 vmap <Leader>y "+y
 vmap <Leader>d "+d"}}}
+
+" Plugin settings"{{{
+
+" Editorconfig
+let g:EditorConfig_core_mode = 'external_command'
+"}}}
