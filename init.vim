@@ -45,6 +45,8 @@ NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'editorconfig/editorconfig-vim'
 NeoBundle 'ekalinin/Dockerfile.vim'
 NeoBundle 'morhetz/gruvbox'
+NeoBundle 'SirVer/ultisnips'
+NeoBundle 'honza/vim-snippets'
 
 " Required:
 call neobundle#end()
@@ -87,4 +89,9 @@ vmap <Leader>d "+d
 
 " Editorconfig
 let g:EditorConfig_core_mode = 'external_command'
+
+" Snippets
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<C-b>"
+let g:UltiSnipsJumpBackwardTrigger="<C-z>"
 "}}}
