@@ -4,21 +4,8 @@ let g:python_host_skip_check = 1
 let g:python3_host_skip_check = 1
 
 if has('unix')
-  let g:python_version = matchstr(system("python --version | cut -f2 -d' '"), '^[0-9]')
-  call system("which pyenv")
-  if v:shell_error
-    if g:python_version =~ 3
-      let g:python2_host_prog = "/usr/bin/python2"
-    else
-      let g:python3_host_prog = "/usr/bin/python3"
-    endif
-  else
-    if g:python_version =~ 3
-      let g:python2_host_prog = expand("~/.pyenv/shims/python2")
-    else
-      let g:python3_host_prog = expand("~/.pyenv/shims/pyton3")
-    endif
-  endif
+    let g:python_host_prog = '/usr/local/bin/python'
+    let g:python3_host_prog = '/usr/local/bin/python3.5'
 endif
 "}}}
 
@@ -47,6 +34,7 @@ NeoBundle 'ekalinin/Dockerfile.vim'
 NeoBundle 'morhetz/gruvbox'
 NeoBundle 'SirVer/ultisnips'
 NeoBundle 'honza/vim-snippets'
+NeoBundle 'pearofducks/ansible-vim'
 
 " Required:
 call neobundle#end()

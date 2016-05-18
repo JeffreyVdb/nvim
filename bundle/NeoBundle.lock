@@ -1,4 +1,5 @@
 NeoBundleLock Dockerfile.vim 5d9ad157fa499798435cb90efc6a30d88aa16462
+NeoBundleLock ansible-vim 3c494fc481fe38f947f230ec1d7cb85087a7fdb6
 NeoBundleLock ctrlp.vim 8e4af9f748e985496b62ed5f7bc009c71c2eb1b1
 NeoBundleLock editorconfig-vim 6e7011712398e53671e5a44edefeb68914562a3a
 NeoBundleLock gruvbox 91bae6876031ececf151cc4f28aa5fb8c93681e4
