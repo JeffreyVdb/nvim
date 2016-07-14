@@ -1,5 +1,6 @@
 " General settings"{{{
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 let g:python_host_skip_check = 1
 let g:python3_host_skip_check = 1
 
@@ -35,6 +36,7 @@ NeoBundle 'morhetz/gruvbox'
 NeoBundle 'SirVer/ultisnips'
 NeoBundle 'honza/vim-snippets'
 NeoBundle 'pearofducks/ansible-vim'
+NeoBundle 'fatih/vim-go'
 
 " Required:
 call neobundle#end()
