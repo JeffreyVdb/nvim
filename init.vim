@@ -5,8 +5,12 @@ let g:python_host_skip_check = 1
 let g:python3_host_skip_check = 1
 
 if has('unix')
-    let g:python_host_prog = '/usr/local/bin/python'
-    let g:python3_host_prog = '/usr/local/bin/python3.5'
+    let g:python_version = matchstr(system("python --version | cut -f2 -d' '"), '^[0-9]')
+    if g:python_version =~ 3
+        let g:python2_host_prog = "/usr/local/bin/python2"
+    else
+        let g:python3_host_prog = "/usr/local/bin/python3"
+    endif
 endif
 "}}}
 
@@ -33,10 +37,10 @@ NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'editorconfig/editorconfig-vim'
 NeoBundle 'ekalinin/Dockerfile.vim'
 NeoBundle 'morhetz/gruvbox'
-NeoBundle 'SirVer/ultisnips'
 NeoBundle 'honza/vim-snippets'
 NeoBundle 'pearofducks/ansible-vim'
 NeoBundle 'fatih/vim-go'
+NeoBundle 'luochen1990/rainbow'
 
 " Required:
 call neobundle#end()
@@ -57,6 +61,27 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set expandtab
+
+" Let braces be colored
+let g:rainbow_active = 1
+let g:rbpt_colorpairs = [
+    \ ['brown',       'RoyalBlue3'],
+    \ ['Darkblue',    'SeaGreen3'],
+    \ ['darkgray',    'DarkOrchid3'],
+    \ ['darkgreen',   'firebrick3'],
+    \ ['darkcyan',    'RoyalBlue3'],
+    \ ['darkred',     'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['brown',       'firebrick3'],
+    \ ['gray',        'RoyalBlue3'],
+    \ ['black',       'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['Darkblue',    'firebrick3'],
+    \ ['darkgreen',   'RoyalBlue3'],
+    \ ['darkcyan',    'SeaGreen3'],
+    \ ['darkred',     'DarkOrchid3'],
+    \ ['red',         'firebrick3'],
+    \ ]
 "}}}
 
 " File settings"{{{
@@ -81,7 +106,6 @@ vmap <Leader>d "+d
 let g:EditorConfig_core_mode = 'external_command'
 
 " Snippets
-let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<C-b>"
 let g:UltiSnipsJumpBackwardTrigger="<C-z>"
 "}}}
