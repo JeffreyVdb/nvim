@@ -17,6 +17,8 @@ endif
 " package manager"{{{
 if has('vim_starting')
     set runtimepath+=~/.config/nvim/bundle/neobundle.vim
+    set runtimepath+=~/.fzf
+    set runtimepath+=/usr/local/opt/fzf
 endif
 
 if &compatible
@@ -25,6 +27,7 @@ endif
 
 call neobundle#begin(expand('~/.config/nvim/bundle'))
 
+
 " Let NeoBundle manage NeoBundle
 NeoBundleFetch 'Shougo/neobundle.vim'
 
@@ -32,7 +35,6 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/neosnippet.vim'
 NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'ctrlpvim/ctrlp.vim'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'editorconfig/editorconfig-vim'
 NeoBundle 'ekalinin/Dockerfile.vim'
@@ -41,6 +43,10 @@ NeoBundle 'honza/vim-snippets'
 NeoBundle 'pearofducks/ansible-vim'
 NeoBundle 'fatih/vim-go'
 NeoBundle 'luochen1990/rainbow'
+NeoBundle 'Matt-Deacalion/vim-systemd-syntax'
+NeoBundle 'vim-airline/vim-airline'
+NeoBundle 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
+NeoBundle 'junegunn/fzf.vim'
 
 " Required:
 call neobundle#end()
@@ -51,16 +57,22 @@ filetype plugin indent on
 
 " Appearance"{{{
 colorscheme gruvbox
+let g:gruvbox_contrast_light='hard'
+let g:gruvbox_contrast_dark='hard'
+let g:airline_powerline_fonts = 1
 syntax on
 set foldenable
 set nu
-set background=dark
+set background=light
 set colorcolumn=80,100
 set cursorline
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set expandtab
+
+set listchars=eol:$,tab:>·,trail:~,extends:>,precedes:<,space:.
+set list
 
 " Let braces be colored
 let g:rainbow_active = 1
@@ -98,6 +110,8 @@ noremap <Leader>ec :r !
 noremap <Leader>cef gg"+yG
 vmap <Leader>y "+y
 vmap <Leader>d "+d
+
+map <C-p> :Files<CR>
 "}}}
 
 " Plugin settings"{{{
@@ -108,4 +122,23 @@ let g:EditorConfig_core_mode = 'external_command'
 " Snippets
 let g:UltiSnipsJumpForwardTrigger="<C-b>"
 let g:UltiSnipsJumpBackwardTrigger="<C-z>"
+
+" Fzf
+" Customize fzf colors to match your color scheme
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
+
+let g:fzf_layout = { 'down': '~40%' }
+
 "}}}
