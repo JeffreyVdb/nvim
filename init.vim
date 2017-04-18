@@ -142,3 +142,8 @@ let g:fzf_colors =
 let g:fzf_layout = { 'down': '~40%' }
 
 "}}}
+
+" FileType settings{{{
+" Strip trailing whitespace for these filetypes
+autocmd FileType c,cpp,java,php,python autocmd BufWritePre <buffer> %s/\s\+$//e
+""}}}
